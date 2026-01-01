@@ -1,29 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>My To-Do App</title>
-</head>
-<body>
-  <h1>My To-Do List</h1>
+<script>
+  function addTodo() {
+    const input = document.getElementById("todoInput");
+    const text = input.value;
 
-  <input id="todoInput" placeholder="Enter a task">
-  <button onclick="addTodo()">Add</button>
+    if (text === "") return;
 
-  <ul id="todoList"></ul>
+    const li = document.createElement("li");
 
-  <script>
-    function addTodo() {
-      const input = document.getElementById("todoInput");
-      const text = input.value;
+    // Add task text
+    li.textContent = text + " ";
 
-      if (text === "") return;
+    // Create delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.onclick = function() {
+      li.remove();
+    };
 
-      const li = document.createElement("li");
-      li.textContent = text;
-
-      document.getElementById("todoList").appendChild(li);
-      input.value = "";
-    }
-  </script>
-</body>
-</html>
+    li.appendChild(deleteBtn);
+    document.getElementById("todoList").appendChild(li);
+    input.value = "";
+  }
+</script>
